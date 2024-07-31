@@ -15,12 +15,16 @@ public class Main {
         for (int i=0; i<n; i++) { arr[i] = i; }
         for (int i=1; i<=m; i++) {
             st = new StringTokenizer(bf.readLine());
-            int a = find(Integer.parseInt(st.nextToken()));
-            int b = find(Integer.parseInt(st.nextToken()));
-            if (a != b) {
-                arr[b] = a;
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            if (res == n+1) {
+                a = find(a); b = find(b);
+                if (a != b)
+                    arr[b] = a;
+                else
+                    res = i;
             } else {
-                res = Math.min(res, i);
+                continue;
             }
         }
         if (res != n+1) System.out.println(res);
