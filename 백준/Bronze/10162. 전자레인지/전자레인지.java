@@ -14,13 +14,13 @@ public class Main {
         int a = 0, b = 0, c = 0;
         while (n != 0) {
             if (n >= 300) {
-                a = n / 360;
-                n %= 360;
+                a += n / 300;
+                n %= 300;
             } else if (n >= 60) {
-                b = n / 60;
+                b += n / 60;
                 n %= 60;
             } else {
-                c = n / 10;
+                c += n / 10;
                 n %= 10;
             }
         }
