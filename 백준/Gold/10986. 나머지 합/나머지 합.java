@@ -9,27 +9,30 @@ public class Main {
         StringTokenizer st = new StringTokenizer(bf.readLine());
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
-        long res = 0;
-        long[] sum = new long [n+1];
-        sum[0] = 0;
-        long[] mod = new long [m];
-
+        long[] arr = new long [n];
+        long[] sum = new long [n];
+        long[] x = new long [m]; // 결과 count 위한 배열
         st = new StringTokenizer(bf.readLine());
-        for (int i=1; i<=n; i++) {
-            int input = Integer.parseInt(st.nextToken());
-            sum[i] = sum[i-1] + input;
-            int tmp = (int) (sum[i] % m);
-//            if (tmp == 0) {
-//                res++;
-//            }
-            mod[tmp]++;
-        }
-
-        for (int i=0; i<m; i++) {
-            if (mod[i] > 1) {
-                res += ( mod[i]*(mod[i] - 1) / 2);
+        for (int i=0; i<n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+            if (i == 0) {
+                sum[i] = arr[i];
+            } else {
+                sum[i] = sum[i-1] + arr[i];
             }
         }
-        System.out.println(res + mod[0]);
+        long[] mod = new long [n]; // 구간 합 나머지 저장
+        long cnt = 0;
+        for (int i=0; i<n; i++) {
+            mod[i] = sum[i] % m;
+            x[(int)mod[i]]++;
+            if (mod[i] == 0) cnt++;
+        }
+        for (int i=0; i<m; i++) {
+            cnt += x[i] * (x[i] - 1) / 2;
+        }
+        System.out.println(cnt);
+
     }
 }
+
