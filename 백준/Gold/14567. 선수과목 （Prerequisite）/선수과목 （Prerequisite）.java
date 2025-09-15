@@ -25,12 +25,11 @@ public class Main {
             arr[u].add(v);
             deg[v]++;
         }
-        int seq = 1;
         Queue<Integer> q = new LinkedList<>(); // 큐에 진입 차수가 0인 노드 삽입.
         for (int i = 1; i <= n; i++) {
             if (deg[i] == 0) {
                 q.add(i);
-                res[i] = seq;
+                res[i] = 1;
             }
         }
         while (!q.isEmpty()) {
